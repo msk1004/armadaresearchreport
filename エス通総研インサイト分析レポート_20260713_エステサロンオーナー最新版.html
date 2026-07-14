@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エス通総研｜エステサロンオーナー インサイト分析レポート 2026年7月版</title>
+<style>
+  :root {
+    --pink: #FF8FAB;
+    --pink-dark: #E85D8A;
+    --pink-deep: #D64571;
+    --pink-light: #FFE1EC;
+    --pink-pale: #FFF3F7;
+    --peach: #FFD9C7;
+    --coral: #FF9F80;
+    --mint: #A8DDCB;
+    --mint-dark: #4FA98A;
+    --lavender: #D9C6F0;
+    --lavender-dark: #9B7FC7;
+    --cream: #FFFCFD;
+    --text: #4A3B42;
+    --text-mid: #7A6B72;
+    --text-light: #B5A2AA;
+    --border: #FBE0EA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+    background: #FFFDFE;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ══════════ HEADER ══════════ */
+  .site-header {
+    background: #fff;
+    border-bottom: 3px solid var(--pink-light);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { display: flex; align-items: baseline; gap: 10px; }
+  .logo-main { font-size: 20px; font-weight: 900; color: var(--pink-dark); letter-spacing: 0.05em; }
+  .logo-sub { font-size: 11px; color: var(--text-light); letter-spacing: 0.1em; }
+  .header-nav { display: flex; gap: 4px; }
+  .header-nav a { color: var(--text-mid); text-decoration: none; font-size: 12px; padding: 6px 12px; border-radius: 20px; transition: all 0.2s; cursor: pointer; }
+  .header-nav a:hover { background: var(--pink-pale); color: var(--pink-dark); }
+
+  /* ══════════ HERO ══════════ */
+  .hero {
+    background: linear-gradient(160deg, #FFF3F7 0%, #FFE9F0 45%, #FFEFE6 100%);
+    padding: 64px 40px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-deco { position: absolute; opacity: 0.9; pointer-events: none; }
+  .hero-label {
+    display: inline-block;
+    background: var(--pink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 16px 5px 14px;
+    border-radius: 20px 4px 20px 4px;
+    letter-spacing: 0.12em;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 10px rgba(255,143,171,0.35);
+  }
+  .hero-title {
+    font-size: 28px; font-weight: 900; color: #55303f;
+    line-height: 1.5; margin-bottom: 14px; letter-spacing: 0.02em;
+    position: relative; z-index: 2; max-width: 780px;
+  }
+  .hero-title .accent {
+    position: relative;
+    display: inline-block;
+    color: var(--pink-deep);
+  }
+  .hero-title .accent::after {
+    content: '';
+    position: absolute;
+    left: -2px; right: -2px; bottom: 2px;
+    height: 10px;
+    background: var(--peach);
+    opacity: 0.7;
+    z-index: -1;
+    border-radius: 3px;
+    transform: rotate(-1deg);
+  }
+  .hero-subtitle { font-size: 14px; color: var(--text-mid); margin-bottom: 34px; max-width: 700px; position: relative; z-index: 2; }
+  .hero-meta { display: flex; gap: 28px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .meta-item {
+    display: flex; flex-direction: column; gap: 4px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid #fff;
+    padding: 10px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(230,140,170,0.18);
+  }
+  .meta-label { font-size: 10px; color: var(--pink-dark); letter-spacing: 0.1em; font-weight: 700; }
+  .meta-value { font-size: 21px; font-weight: 900; color: #55303f; }
+  .meta-unit { font-size: 12px; color: var(--text-mid); font-weight: 400; margin-left: 2px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 44px 24px 80px; }
+
+  .section { margin-bottom: 60px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .section-icon {
+    width: 44px; height: 44px; background: var(--pink-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  /* cute heading style — offset stripe underline, inspired by 0forest.com blog heading patterns */
+  .section-title {
+    font-size: 20px; font-weight: 800; color: var(--text);
+    letter-spacing: 0.02em;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 6px;
+    background: repeating-linear-gradient(-45deg, var(--pink-light), var(--pink-light) 4px, #fff 4px, #fff 8px);
+    border-radius: 3px;
+  }
+  .section-note { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+
+  .lead-box {
+    background: #fff;
+    border: 1.5px dashed var(--pink);
+    border-radius: 16px;
+    padding: 20px 26px;
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .lead-box::before { content: '🌸'; position: absolute; top: -16px; left: 20px; font-size: 20px; background: #fff; padding: 0 6px; }
+
+  /* ══════════ CATEGORY CARDS ══════════ */
+  .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .cat-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(230,150,175,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+  }
+  .cat-card.hue-a .cat-header { background: linear-gradient(120deg, #FFC1D6, #FF8FAB); }
+  .cat-card.hue-b .cat-header { background: linear-gradient(120deg, #FFCBA8, #FF9F80); }
+  .cat-card.hue-c .cat-header { background: linear-gradient(120deg, #B8E8D4, #6FC9AA); }
+  .cat-card.hue-d .cat-header { background: linear-gradient(120deg, #E4D3F7, #C1A2E8); }
+
+  .cat-header { padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; position: relative; overflow: hidden; }
+  .cat-id-badge {
+    width: 42px; height: 42px; background: rgba(255,255,255,0.9); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .cat-label-small { font-size: 10px; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
+  .cat-title { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.4; }
+  .cat-body { padding: 22px 24px; flex: 1; }
+  .cat-worry { font-size: 15px; font-weight: 800; color: var(--pink-deep); margin-bottom: 8px; }
+  .cat-reason { font-size: 12.5px; color: var(--text-mid); margin-bottom: 14px; }
+  .cat-reason ul { margin-left: 4px; margin-top: 8px; list-style: none; }
+  .cat-reason li { margin-bottom: 6px; padding-left: 18px; position: relative; }
+  .cat-reason li::before { content: '🌷'; position: absolute; left: 0; top: -1px; font-size: 10px; }
+
+  .quote-block {
+    background: var(--pink-pale);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #6b4f58;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .quote-attr { font-size: 10.5px; color: var(--text-light); margin-top: 6px; }
+
+  .trend-note {
+    background: #FFF6EF;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 11.5px;
+    color: var(--text-mid);
+    margin-top: 10px;
+  }
+  .trend-note strong { color: var(--pink-deep); }
+  .mini-label { font-size: 10.5px; font-weight: 700; color: var(--pink-dark); letter-spacing: 0.08em; text-transform: uppercase; margin: 14px 0 8px; display: flex; align-items: center; gap: 5px; }
+
+  /* ══════════ URGENCY RANKING ══════════ */
+  .urgency-list { display: flex; flex-direction: column; gap: 16px; }
+  .urgency-item { background: #fff; border-radius: 16px; padding: 18px 22px; box-shadow: 0 4px 16px rgba(230,150,175,0.14); border: 1px solid var(--border); }
+  .urgency-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+  .urgency-rank { font-size: 14px; font-weight: 800; color: var(--text); }
+  .urgency-desc { font-size: 12px; color: var(--text-light); }
+  .badge { display: inline-flex; align-items: center; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-s  { background: #FFE1E8; color: #D6336C; border: 1px solid #FFB3C6; }
+  .badge-a  { background: #FFEBDB; color: #E8792E; border: 1px solid #FFCBA0; }
+  .badge-b  { background: #FFF4D6; color: #C79A1E; border: 1px solid #FDE49B; }
+  .urgency-bar-wrap { height: 10px; background: var(--pink-pale); border-radius: 5px; overflow: hidden; }
+  .urgency-bar { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--pink), var(--coral)); }
+
+  /* ══════════ TREND SECTION ══════════ */
+  .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .trend-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px; position: relative; overflow: hidden; }
+  .trend-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: repeating-linear-gradient(-45deg, var(--pink), var(--pink) 6px, var(--peach) 6px, var(--peach) 12px); }
+  .trend-name { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .trend-card ul { margin-left: 4px; list-style: none; }
+  .trend-card li { font-size: 12px; color: var(--text-mid); margin-bottom: 7px; padding-left: 16px; position: relative; }
+  .trend-card li::before { content: '✦'; position: absolute; left: 0; color: var(--pink); font-size: 10px; top: 2px; }
+  .tag { display: inline-block; font-size: 9.5px; padding: 2px 9px; border-radius: 10px; font-weight: 700; margin-left: 4px; }
+  .tag-hot { background: #FFE1E8; color: #D6336C; }
+  .tag-risk { background: #FFF4D6; color: #B8860B; }
+
+  /* ══════════ PROPOSAL CARDS ══════════ */
+  .proposal-grid { display: flex; flex-direction: column; gap: 16px; }
+  .proposal-card { background: #fff; border-radius: 16px; padding: 20px 24px; box-shadow: 0 4px 16px rgba(230,150,175,0.13); display: flex; gap: 18px; align-items: flex-start; border: 1px solid var(--border); }
+  .proposal-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--pink-light), var(--peach)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .proposal-title { font-size: 14.5px; font-weight: 800; color: var(--pink-deep); margin-bottom: 6px; }
+  .proposal-text { font-size: 12.5px; color: var(--text-mid); }
+
+  /* ══════════ TIMELINE ══════════ */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .timeline-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; background: #fff; border-radius: 12px; padding: 14px 20px; box-shadow: 0 2px 8px rgba(230,150,175,0.1); border: 1px solid var(--border); }
+  .timeline-period { font-size: 12px; font-weight: 800; color: #fff; background: var(--pink); border-radius: 20px; padding: 4px 10px; text-align: center; align-self: start; }
+  .timeline-text { font-size: 12.5px; color: var(--text-mid); }
+
+  /* ══════════ SOURCE ══════════ */
+  .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .source-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 20px; position: relative; overflow: hidden; }
+  .source-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--pink), var(--peach)); }
+  .source-name { font-size: 14px; font-weight: 800; color: var(--pink-deep); margin-bottom: 8px; }
+  .source-row { font-size: 11.5px; color: var(--text-mid); margin-bottom: 4px; }
+  .source-row strong { color: var(--text); }
+  .source-url { font-size: 10.5px; color: var(--mint-dark); word-break: break-all; }
+
+  .notice-box { background: #FFF6EF; border: 1px solid var(--peach); border-radius: 14px; padding: 18px 22px; margin-top: 24px; }
+  .notice-title { font-size: 12px; font-weight: 700; color: #C97A2E; margin-bottom: 8px; }
+  .notice-list li { font-size: 11.5px; color: var(--text-mid); margin-bottom: 4px; list-style: disc; margin-left: 18px; }
+
+  /* wavy divider instead of plain hr — soft, on-brand */
+  .divider-wave { width: 100%; height: 28px; margin: 44px 0; opacity: 0.9; }
+
+  .footer { background: linear-gradient(120deg, var(--pink), var(--pink-deep)); padding: 36px 40px; text-align: center; position: relative; overflow: hidden; }
+  .footer-logo { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 6px; letter-spacing: 0.05em; }
+  .footer-text { font-size: 12px; color: rgba(255,255,255,0.85); position: relative; z-index: 2; }
+
+  @media (max-width: 800px) {
+    .hero { padding: 36px 20px; }
+    .hero-title { font-size: 21px; }
+    .container { padding: 28px 16px 60px; }
+    .site-header { padding: 0 16px; }
+    .header-nav { display: none; }
+    .cat-grid, .trend-grid { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-main">🌸 エス通総研</span>
+    <span class="logo-sub">ESUTSU RESEARCH INSTITUTE</span>
+  </div>
+  <nav class="header-nav">
+    <a onclick="scrollToId('section-category')">悩みカテゴリー</a>
+    <a onclick="scrollToId('section-urgency')">緊急度ランキング</a>
+    <a onclick="scrollToId('section-trend')">業界トレンド</a>
+    <a onclick="scrollToId('section-proposal')">提案アイデア</a>
+    <a onclick="scrollToId('section-source')">出典</a>
+  </nav>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <!-- decorative illustrations (inline SVG, no external image dependency) -->
+  <svg class="hero-deco" style="top:-30px; right:-20px;" width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.9">
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6"/>
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6" transform="rotate(60 150 60)"/>
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6" transform="rotate(120 150 60)"/>
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6" transform="rotate(180 150 60)"/>
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6" transform="rotate(240 150 60)"/>
+      <circle cx="150" cy="60" r="10" fill="#FFC1D6" transform="rotate(300 150 60)"/>
+      <circle cx="150" cy="60" r="7" fill="#FFE9B0"/>
+    </g>
+    <g opacity="0.7">
+      <circle cx="70" cy="140" r="7" fill="#FFD9C7"/>
+      <circle cx="70" cy="140" r="7" fill="#FFD9C7" transform="rotate(72 70 140)"/>
+      <circle cx="70" cy="140" r="7" fill="#FFD9C7" transform="rotate(144 70 140)"/>
+      <circle cx="70" cy="140" r="7" fill="#FFD9C7" transform="rotate(216 70 140)"/>
+      <circle cx="70" cy="140" r="7" fill="#FFD9C7" transform="rotate(288 70 140)"/>
+      <circle cx="70" cy="140" r="5" fill="#FFE9B0"/>
+    </g>
+    <path d="M40 40 Q45 20 50 40 Q45 55 40 40" fill="#B8E8D4" opacity="0.8"/>
+    <text x="185" y="150" font-size="22">✦</text>
+    <text x="30" y="90" font-size="16" fill="#FFB3C6">✦</text>
+  </svg>
+  <svg class="hero-deco" style="bottom:-10px; left:20px;" width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 60 Q20 40 30 60 Q35 45 45 60" stroke="#B8E8D4" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="90" cy="50" r="6" fill="#FFC1D6"/>
+    <circle cx="90" cy="50" r="6" fill="#FFC1D6" transform="rotate(90 90 50)"/>
+    <circle cx="90" cy="50" r="6" fill="#FFC1D6" transform="rotate(180 90 50)"/>
+    <circle cx="90" cy="50" r="6" fill="#FFC1D6" transform="rotate(270 90 50)"/>
+    <circle cx="90" cy="50" r="4" fill="#FFE9B0"/>
+  </svg>
+
+  <div class="hero-label">RESEARCH REPORT ／ 2026年7月版</div>
+  <h1 class="hero-title">エステサロンオーナー インサイト分析レポート<br><span class="accent">〜コミュニティの「生の声」×業界動向データ〜</span><br>で読み解く、美容メーカー様向けアプローチの仮説提案</h1>
+  <p class="hero-subtitle">サロン経営者コミュニティのLINEオープンチャット2件（約2ヶ月・3,664発言）の精読と、直近半年間のエステ業界Web動向調査を統合した最新版。</p>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="meta-label">分析対象コミュニティ</span><span class="meta-value">2<span class="meta-unit">グループ</span></span></div>
+    <div class="meta-item"><span class="meta-label">分析対象期間</span><span class="meta-value" style="font-size:17px;">2026.5.11〜7.13</span></div>
+    <div class="meta-item"><span class="meta-label">分析発言数</span><span class="meta-value">3,664<span class="meta-unit">件</span></span></div>
+    <div class="meta-item"><span class="meta-label">悩みカテゴリー</span><span class="meta-value">4<span class="meta-unit">分類</span></span></div>
+  </div>
+</section>
+
+<!-- ══════════ MAIN CONTENT ══════════ -->
+<main class="container">
+
+  <div class="lead-box">
+    本レポートは、エステサロン経営者が参加する2つのLINEオープンチャット（「エステサロン経営勉強の場」「個人エステサロンオーナーの情報交換グループ」）における実際のやり取りと、直近半年間のエステ業界Web動向・新製品情報を組み合わせて作成しています。個人・サロンが特定される情報は匿名化（オーナーA・B…）し、社内資料としてのみご活用ください。
+  </div>
+
+  <!-- ══════ カテゴリー別悩み ══════ -->
+  <section class="section" id="section-category">
+    <div class="section-header">
+      <div class="section-icon">🔎</div>
+      <div>
+        <div class="section-title">1. カテゴリー別の多い悩みとその理由</div>
+        <div class="section-note">LINEコミュニティでの実際のやり取り＋直近半年の業界動向を統合</div>
+      </div>
+    </div>
+
+    <div class="cat-grid">
+
+      <!-- A: 集客・マーケティング -->
+      <div class="cat-card hue-a">
+        <div class="cat-header">
+          <div class="cat-id-badge">📣</div>
+          <div>
+            <div class="cat-label-small">Category A</div>
+            <div class="cat-title">集客・マーケティング</div>
+          </div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-worry">ポータル依存からの脱却と、AI検索時代への適応の壁</div>
+          <div class="cat-reason">
+            ホットペッパービューティーの手数料体系変更（2026/1/29〜「ポイント付与料＋共通ネット予約利用料」の2階建て化）と新体制での担当者対応の希薄化により、ポータル依存への不満が噴出。一方でMEO・Instagram・LINEの自社運用に切り替えたくても、AIオーバービュー時代の情報統一・口コミ管理など新しい知識が必要でハードルが高い。
+            <ul>
+              <li>「脱ホットペッパー」を志向する声が複数回登場も、移行の手間・不安が障壁に</li>
+              <li>HPB成果報酬プランの不正処理（新規客の会計操作等）や、求人成果報酬のペナルティリスクなど、グレーな運用実態も話題に</li>
+              <li>Googleの規約違反口コミが削除されても再投稿される嫌がらせ被害、開示請求の相談も</li>
+            </ul>
+          </div>
+          <div class="mini-label">💬 LINEでの生の声</div>
+          <div class="quote-block">「対面は無くなったみたいです…いつもまーまー放置されてます🥺全然サポートとかもされないです」<div class="quote-attr">— オーナーA（HPB新体制について）2026/7/9</div></div>
+          <div class="quote-block">「ホットペッパー高いので、次の更新しないで他に切り替える予定です」<div class="quote-attr">— オーナーB 2026/7/9</div></div>
+          <div class="trend-note"><strong>業界動向：</strong>MEO対策の費用相場は月2〜10万円。生成AIによる店舗情報参照を意識した表記統一・実店舗写真・具体的口コミの蓄積が「AIからの評価」を左右する要素として注目されている。<span class="tag tag-hot">HOT</span></div>
+        </div>
+      </div>
+
+      <!-- B: 財務・決済・契約 -->
+      <div class="cat-card hue-b">
+        <div class="cat-header">
+          <div class="cat-id-badge">💳</div>
+          <div>
+            <div class="cat-label-small">Category B</div>
+            <div class="cat-title">財務・決済・契約</div>
+          </div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-worry">決済インフラの信用不安と、値上げラッシュへの対応疲れ</div>
+          <div class="cat-reason">
+            2026年7月、決済代行会社「全東信」の破産（負債額約1,259億円）がコミュニティ内で即座に話題化し、「自分の使っている決済代行も危ないのでは」という不安が業界全体に波及。同時に、化粧品原材料の値上げ（取引先ブランドで8割以上の値上げ通知事例も）が7月にかけて相次ぎ、値上げ幅・タイミング・伝え方について活発な情報交換が続いている。
+            <ul>
+              <li>開業融資・補助金申請でのメーカー主導の不透明な値引き交渉・サポート料金への不信</li>
+              <li>業務委託スタッフ契約でのトラブル経験から「弁護士を入れた契約書作成」を推奨する声</li>
+              <li>美容師法・美容所登録のグレーゾーン運用（施術の適法性）への不安の大型スレッドも発生</li>
+            </ul>
+          </div>
+          <div class="mini-label">💬 LINEでの生の声</div>
+          <div class="quote-block">「どの決済代行会社を使ってても、可能性はあるので、入金サイクルはできるだけ短くした方が安全ということですね」<div class="quote-attr">— オーナーC 2026/7/7（全東信破産を受けて）</div></div>
+          <div class="quote-block">「7月から取り扱っているコスメが8割以上値上がりすることになり、正直かなり驚いております💦」<div class="quote-attr">— オーナーD 2026/6/12</div></div>
+          <div class="trend-note"><strong>業界動向：</strong>美容業界従事者の91.5%が材料費上昇を実感（未知株式会社調査）。値上げ対応は「メニュー一部値上げ」42.6%が最多。2026年10月にはインボイス経過措置の控除割合が80%→50%に縮小し、法人取引中心のサロンは登録要否の再検討局面。<span class="tag tag-risk">要注意</span></div>
+        </div>
+      </div>
+
+      <!-- C: 商材・機器の選定 -->
+      <div class="cat-card hue-c">
+        <div class="cat-header">
+          <div class="cat-id-badge">🧴</div>
+          <div>
+            <div class="cat-label-small">Category C</div>
+            <div class="cat-title">商材・機器の選定</div>
+          </div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-worry">新トレンド商材への強い関心と、薬機法・MLM構造への警戒心の同居</div>
+          <div class="cat-reason">
+            全カテゴリー中もっとも投稿量が多く、脱毛機・痩身機器・プラズマ機器・ピーリング系の実践的な比較検討が連日行われている。特に6月下旬〜7月に「エクソソーム・幹細胞コスメ」がブーム的に話題化した直後、薬機法上の未承認薬リスクについて専門的な注意喚起が展開されるなど、情報のアップデートが速い。MLM的な販売構造を持つ商材（連鎖販売取引には該当しないが類似のマーケ手法）への複雑な感情（商品評価はしつつ販売会社の対応に不満）も目立つ。
+            <ul>
+              <li>シミケア新商材「NEWTON（ニュートン）」への期待と「お試しできない」ことへの不安（レーザー等の"削る・剥がす"ではなく、塗布によりシミを自然に浮き上がらせて排出するという新アプローチ）</li>
+              <li>メーカー・代理店の「購入後の音沙汰なし」「担当者の頻繁な交代」への不満が繰り返し語られる</li>
+              <li>展示会出展メーカーへの警戒（「宣伝費をかけるならマシンの改良に」という声）＝BWJ離れの兆し</li>
+            </ul>
+          </div>
+          <div class="mini-label">💬 LINEでの生の声</div>
+          <div class="quote-block">「幹細胞由来のエクソソームは、未承認薬に該当するもので、基本お医者さんしか扱えません…取り扱うサロンオーナーは少なくともこれら最低限知識を持つ責任があります」<div class="quote-attr">— オーナーE 2026/7/11</div></div>
+          <div class="quote-block">「小さな個人サロンには難しく、お断りした際に『このくらいで手が出せないようだとサロンとしてどうのこうの…』と丁寧に優しく言われ、卸せないと言われた気になりました😭」<div class="quote-attr">— オーナーF（代理店営業について）2026/6/30</div></div>
+          <div class="trend-note"><strong>業界動向：</strong>発酵成分・エクソソーム・AI設計ペプチドなど機能性成分が台頭。ヤーマン「レイボーテ クールプロ」、MYTREX「MiRAY」等の新型美容機器や、法規制強化中のHIFUに代わるラジオ波・マイクロ波系複合機の高性能化が進行中。<span class="tag tag-hot">HOT</span><span class="tag tag-risk">法規制注意</span></div>
+        </div>
+      </div>
+
+      <!-- D: 店舗運営・顧客対応 -->
+      <div class="cat-card hue-d">
+        <div class="cat-header">
+          <div class="cat-id-badge">🏪</div>
+          <div>
+            <div class="cat-label-small">Category D</div>
+            <div class="cat-title">店舗運営・顧客対応</div>
+          </div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-worry">一人運営の限界と、理不尽な顧客対応の精神的負荷</div>
+          <div class="cat-reason">
+            スタッフ離職により一人運営を強いられるオーナーの疲弊、理不尽な返金要求・子連れ客対応など、日々のクレーム対応の精神的負担が繰り返し共有される。一方で紙カルテからの脱却を目指しAIツール（Claude Code等）で顧客管理アプリを自作する動きが生まれるなど、DXへの前向きな模索も見られる。1人サロン特有の「相談相手がいない」孤独感を、このコミュニティ自体が受け皿になっている点も特徴的。
+            <ul>
+              <li>「値上げ＋営業時間短縮」という自衛策を実行し、コミュニティに背中を押された事例</li>
+              <li>USEN等のBGM利用料値上げを受け、代替アプリへの乗り換え相談が活発化</li>
+              <li>防音・空調など個室化の内装投資判断に関する実務的な情報交換</li>
+            </ul>
+          </div>
+          <div class="mini-label">💬 LINEでの生の声</div>
+          <div class="quote-block">「最近一人スタッフやめて、全部一人でこなしたらしにそーです💦」→翌日「思いきって本日半分閉めました❗…誰かに、休みなと言われたかったのかもしれません」<div class="quote-attr">— オーナーG 2026/7/9〜7/10</div></div>
+          <div class="quote-block">「面倒くさくなるの嫌だったので半額返金しました、、返金対応したら速攻LINEブロックされました😇」<div class="quote-attr">— オーナーH 2026/6/19</div></div>
+          <div class="trend-note"><strong>業界動向：</strong>エステ業界の倒産件数は前年比1.7倍。美容業界新卒3年未満の離職率42.5%。人手不足を背景にAI電話予約・24時間問い合わせ自動化の導入が進む。<span class="tag tag-hot">HOT</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <svg class="divider-wave" viewBox="0 0 1100 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 27.5 0 55 14 T 110 14 T 165 14 T 220 14 T 275 14 T 330 14 T 385 14 T 440 14 T 495 14 T 550 14 T 605 14 T 660 14 T 715 14 T 770 14 T 825 14 T 880 14 T 935 14 T 990 14 T 1045 14 T 1100 14" fill="none" stroke="#FFC1D6" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ══════ 緊急度ランキング ══════ -->
+  <section class="section" id="section-urgency">
+    <div class="section-header">
+      <div class="section-icon">📈</div>
+      <div>
+        <div class="section-title">2. 顕在化している悩みの緊急度ランキング</div>
+        <div class="section-note">コミュニティでの言及頻度・切実さ・経営インパクトから編集部が総合判定</div>
+      </div>
+    </div>
+
+    <div class="urgency-list">
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">🥇 1位　決済代行会社の信用不安・入金遅延リスク</span><span class="badge badge-s">緊急度：高</span></div>
+        <div class="urgency-desc">「全東信」破産のニュースが即座に業界内で共有され、自社の決済代行の安全性を再点検する動きが波及。売上に直結する死活問題として最速で話題化。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:96%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">🥈 2位　材料費・原材料の値上げラッシュへの対応</span><span class="badge badge-s">緊急度：高</span></div>
+        <div class="urgency-desc">取引先ブランドの8割超値上げ通知など、価格転嫁の判断（メニュー値上げ／全体値上げ／仕入先見直し）を迫られるオーナーが急増。91.5%が価格上昇を実感（業界調査）。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:92%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">🥉 3位　エクソソーム等・薬機法グレーゾーン商材の安全性判断</span><span class="badge badge-s">緊急度：高</span></div>
+        <div class="urgency-desc">高関心の裏で「未承認薬に該当」等の専門的な注意喚起が拡散。安全性・法令順守の知識不足のまま導入判断を迫られる不安が強い。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:88%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">4位　ポータルサイト依存からの脱却・自社集客への転換</span><span class="badge badge-a">緊急度：中〜高</span></div>
+        <div class="urgency-desc">HPB手数料2階建て化・新体制混乱を機に「脱ホットペッパー」志向が強まるが、MEO・AI検索対策など自社運用の知識移行が追いついていない。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:78%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">5位　人手不足・一人運営の疲弊</span><span class="badge badge-a">緊急度：中</span></div>
+        <div class="urgency-desc">スタッフ離職後の一人運営で疲弊し、値上げ・時短営業という自衛策に踏み切る事例が可視化。倒産件数1.7倍という業界データとも符合。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:68%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">6位　メーカー・代理店のアフターサポート不足への不満</span><span class="badge badge-b">緊急度：中</span></div>
+        <div class="urgency-desc">「購入後は音沙汰なし」「担当者が頻繁に変わる」という声が機器・商材カテゴリーで繰り返し発生。信頼できるパートナー選定への渇望。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:60%"></div></div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-top"><span class="urgency-rank">7位　理不尽なクレーム・返金要求への対応負荷</span><span class="badge badge-b">緊急度：中</span></div>
+        <div class="urgency-desc">日々のクレーム対応が精神的負荷として蓄積。1人サロンほど相談相手がおらず、コミュニティが心理的セーフティネットになっている実態。</div>
+        <div class="urgency-bar-wrap"><div class="urgency-bar" style="width:54%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="divider-wave" viewBox="0 0 1100 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 27.5 0 55 14 T 110 14 T 165 14 T 220 14 T 275 14 T 330 14 T 385 14 T 440 14 T 495 14 T 550 14 T 605 14 T 660 14 T 715 14 T 770 14 T 825 14 T 880 14 T 935 14 T 990 14 T 1045 14 T 1100 14" fill="none" stroke="#FFC1D6" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ══════ 業界トレンド ══════ -->
+  <section class="section" id="section-trend">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <div>
+        <div class="section-title">3. 業界トレンド・新製品トピックス（直近半年間）</div>
+        <div class="section-note">Web調査による客観データ・新製品情報</div>
+      </div>
+    </div>
+
+    <div class="trend-grid">
+      <div class="trend-card">
+        <div class="trend-name">🧪 成分・商材トレンド</div>
+        <ul>
+          <li>低刺激・鎮静成分によるバリア機能回復、発酵成分「バイオ発酵スキンケア」がゆらぎ肌対策で支持</li>
+          <li>シミケア新商材「NEWTON（ニュートン）」が話題化。レーザー・ピーリング等の"削る・剥がす"アプローチと異なり、塗布でシミを自然に浮き上がらせ排出する新発想で注目<span class="tag tag-hot">HOT</span></li>
+          <li>幹細胞培養上清液由来エクソソーム、AI設計ペプチドなど高機能成分の訴求が加速（法規制動向に要注意）</li>
+          <li>サステナブルパッケージ（プラスチックフリー・詰め替え容器）が前年比25〜30%成長見込み</li>
+          <li>美容から「ウェルネス・予防」重視へ消費者意識がシフト（2025年冬〜2026年春が転換点）</li>
+        </ul>
+      </div>
+      <div class="trend-card">
+        <div class="trend-name">✨ 美容機器・脱毛機の新製品</div>
+        <ul>
+          <li>ヤーマン「レイボーテ クールプロ」：独自「美肌光」搭載、脱毛と同時保湿ケア</li>
+          <li>MYTREX「MiRAY」：サロン向け特殊光「DPL」を家庭用として初搭載</li>
+          <li>JOVS「Dora Scroll」2026年モデル：肌色自動判定による出力自動調整</li>
+          <li>安価品とハイエンド品の二極化が解消され、中価格帯の高性能機種が定着傾向</li>
+        </ul>
+      </div>
+      <div class="trend-card">
+        <div class="trend-name">💎 痩身機器・導入技術</div>
+        <ul>
+          <li>HIFU（高密度焦点式超音波）はエステでの非医療機器としての使用が法規制強化の対象となっており、代替機の開発が追いついていないのが実情<span class="tag tag-risk">要注意</span></li>
+          <li>その代替としてラジオ波（RF）・マイクロ波を用いた機器が台頭し、HIFUに近い引き締め効果を非侵襲的に狙う製品が増加</li>
+          <li>医療用EMS（HI-EMT）：30分でスクワット2万回相当の筋収縮を誘発する機器も登場</li>
+          <li>蓄熱式超音波・EMS・ポレーション複合照射機「フォーカスネオ」など複合機が拡大</li>
+          <li>エレクトロポレーション（電気穿孔法）の採用がサロンで拡大中</li>
+        </ul>
+      </div>
+      <div class="trend-card">
+        <div class="trend-name">📱 集客・DXトレンド</div>
+        <ul>
+          <li>MEO対策が「広告費依存脱却の最短ルート」として重要視（費用相場月2〜10万円）</li>
+          <li>ホットペッパービューティー：2026/1/29〜ネット予約手数料が2階建て構造に変更</li>
+          <li>AI音声応答による電話予約自動化で、電話対応30〜60%減の事例も</li>
+          <li>Instagramは「発見（リール）→信頼（口コミ・ビフォーアフター）→予約」の導線設計が定石化</li>
+        </ul>
+      </div>
+      <div class="trend-card">
+        <div class="trend-name">💰 決済・財務まわりの制度変化</div>
+        <ul>
+          <li>キャッシュレス希望顧客が全体の8割超という調査結果</li>
+          <li>サブスク型決済への問い合わせが急増（手数料3%〜が目安）</li>
+          <li>2026年10月〜インボイス経過措置の仕入税額控除割合が80%→50%に縮小</li>
+          <li>大手化粧品ブランドでも2026年4月に値上げラッシュが本格化、業務用化粧品への転嫁圧力も継続</li>
+        </ul>
+      </div>
+      <div class="trend-card">
+        <div class="trend-name">⚖️ 法規制・業界構造の動き<span class="tag tag-risk">要フォロー</span></div>
+        <ul>
+          <li>消費者庁が2026/3/25、エステサロン運営事業者3社に景品表示法の措置命令（優良誤認等）</li>
+          <li>薬機法：「シミが消える」等の医療機器的な効能表現、ステマ規制（PR表記漏れ）に注意喚起</li>
+          <li>サロン専売品の非正規転売問題が継続（対策事例：転売品896件を3ヶ月でゼロ化）</li>
+          <li>市場規模約5,000億円、大手チェーンによるM&A・優秀人材確保競争が継続</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mini-label" style="margin-top:26px;">🕐 時系列で見る話題の変化（LINEコミュニティ）</div>
+    <div class="timeline">
+      <div class="timeline-row"><div class="timeline-period">5月上旬〜中旬</div><div class="timeline-text">展示会（BWJ）関連の出展告知、脱毛機・痩身機器の基本的な選定相談、並行輸入品・偽物リスクへの注意喚起</div></div>
+      <div class="timeline-row"><div class="timeline-period">5月下旬</div><div class="timeline-text">紙カルテ脱却相談（AIツール活用の起点）、美容師法・美容所登録のグレーゾーン議論、メーカー営業への不信噴出</div></div>
+      <div class="timeline-row"><div class="timeline-period">6月上旬〜中旬</div><div class="timeline-text">HPB成果報酬の不正リスク、福利厚生提携営業トラブル、ピーリング系商材の失敗談・愚痴が集中</div></div>
+      <div class="timeline-row"><div class="timeline-period">6月下旬〜7月上旬</div><div class="timeline-text">シミケア新商材「NEWTON」への期待とダウンタイム不安、幹細胞・エクソソームブームと薬機法リスクの警鐘、値上げ対応が本格化</div></div>
+      <div class="timeline-row"><div class="timeline-period">7月上旬〜中旬</div><div class="timeline-text">決済代行「全東信」破産への強い警戒、HPB新体制の混乱、BGMアプリ乗り換え、値上げ後の営業体制見直し</div></div>
+    </div>
+  </section>
+
+  <svg class="divider-wave" viewBox="0 0 1100 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 27.5 0 55 14 T 110 14 T 165 14 T 220 14 T 275 14 T 330 14 T 385 14 T 440 14 T 495 14 T 550 14 T 605 14 T 660 14 T 715 14 T 770 14 T 825 14 T 880 14 T 935 14 T 990 14 T 1045 14 T 1100 14" fill="none" stroke="#FFC1D6" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ══════ 提案アイデア ══════ -->
+  <section class="section" id="section-proposal">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div>
+        <div class="section-title">4. メーカー様がアプローチできること（提案アイデア）</div>
+        <div class="section-note">上記インサイトを踏まえたアプローチ仮説</div>
+      </div>
+    </div>
+
+    <div class="proposal-grid">
+      <div class="proposal-card">
+        <div class="proposal-icon">🤝</div>
+        <div>
+          <div class="proposal-title">「売って終わり」ではない、導入後フォローの明示</div>
+          <div class="proposal-text">「購入後は音沙汰なし」「担当者がすぐ変わる」という不満が繰り返し語られている。定期フォロー・オンライン勉強会・専任担当の継続性を具体的に打ち出すことで、他メーカーとの差別化と信頼獲得につながる。</div>
+        </div>
+      </div>
+      <div class="proposal-card">
+        <div class="proposal-icon">📜</div>
+        <div>
+          <div class="proposal-title">薬機法・法規制情報の適時提供による「安心できるパートナー」化</div>
+          <div class="proposal-text">エクソソーム・幹細胞コスメ等の法規制リスクへの不安が高まっている。成分の法的位置づけ・適正な訴求表現をわかりやすく解説する資料提供は、コンプライアンス意識の高いメーカーとしての信頼度を高める。</div>
+        </div>
+      </div>
+      <div class="proposal-card">
+        <div class="proposal-icon">💴</div>
+        <div>
+          <div class="proposal-title">価格転嫁・決済リスクに関する伴走支援の提案</div>
+          <div class="proposal-text">値上げ判断や決済代行の信用不安に直面するオーナーへ、価格改定のタイミングの相談や、安全な決済・分割導入プランの案内など「経営の守り」を支援する提案は高い共感を得やすい。</div>
+        </div>
+      </div>
+      <div class="proposal-card">
+        <div class="proposal-icon">📲</div>
+        <div>
+          <div class="proposal-title">脱ポータル・自社集客を後押しする販促ツールの提供</div>
+          <div class="proposal-text">MEO・AI検索対策・Instagram運用に苦戦するオーナーへ、商材とセットで使えるビフォーアフター素材・投稿テンプレート・簡単なMEOチェックリストなどを無償提供することは、負担軽減として非常に喜ばれる。</div>
+        </div>
+      </div>
+      <div class="proposal-card">
+        <div class="proposal-icon">🧑‍🤝‍🧑</div>
+        <div>
+          <div class="proposal-title">一人サロン・少人数経営者への寄り添い型コミュニケーション</div>
+          <div class="proposal-text">孤独感を抱えるオーナーが多く、コミュニティ自体がセーフティネット化している。「経営の悩みに寄り添う」オンライン相談会やコミュニティ形成型の施策は、単なる商材提供以上のロイヤルティを生む。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="divider-wave" viewBox="0 0 1100 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 27.5 0 55 14 T 110 14 T 165 14 T 220 14 T 275 14 T 330 14 T 385 14 T 440 14 T 495 14 T 550 14 T 605 14 T 660 14 T 715 14 T 770 14 T 825 14 T 880 14 T 935 14 T 990 14 T 1045 14 T 1100 14" fill="none" stroke="#FFC1D6" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ══════ 出典 ══════ -->
+  <section class="section" id="section-source">
+    <div class="section-header">
+      <div class="section-icon">📚</div>
+      <div>
+        <div class="section-title">出典・データソース一覧</div>
+        <div class="section-note">本レポートで使用したすべてのデータの出典</div>
+      </div>
+    </div>
+
+    <div class="sources-grid">
+      <div class="source-card">
+        <div class="source-name">LINEオープンチャット①</div>
+        <div class="source-row"><strong>名称：</strong>エステサロン経営勉強の場（自由参加）</div>
+        <div class="source-row"><strong>期間：</strong>2026年5月〜7月13日（575発言）</div>
+        <div class="source-row"><strong>内容：</strong>集客・AI検索対策の情報共有が中心</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">LINEオープンチャット②</div>
+        <div class="source-row"><strong>名称：</strong>個人エステサロンオーナーの情報交換グループ（誰でも参加OK）</div>
+        <div class="source-row"><strong>期間：</strong>2026年5月11日〜7月13日（3,089発言）</div>
+        <div class="source-row"><strong>内容：</strong>オーナー同士の相互Q&A・商材相談・経営の悩み相談</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">週刊粧業オンライン</div>
+        <div class="source-row"><strong>内容：</strong>2026年の美容市場動向・需要細分化に関する分析（2026年5月）</div>
+        <div class="source-row"><strong>URL：</strong><span class="source-url">https://www.syogyo.jp/news/2026/05/post_043803</span></div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">矢野経済研究所</div>
+        <div class="source-row"><strong>内容：</strong>理美容向け業務用化粧品市場に関する調査（2026年）</div>
+        <div class="source-row"><strong>URL：</strong><span class="source-url">https://www.yano.co.jp/press-release/show/press_id/4090</span></div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">未知株式会社（PR TIMES）</div>
+        <div class="source-row"><strong>内容：</strong>美容師・サロン関係者の材料費価格上昇実感度調査</div>
+        <div class="source-row"><strong>URL：</strong><span class="source-url">https://prtimes.jp/main/html/rd/p/000000072.000068334.html</span></div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">消費者庁</div>
+        <div class="source-row"><strong>内容：</strong>エステティックサロン運営事業者3社への景品表示法に基づく措置命令（2026/3/25）</div>
+        <div class="source-row"><strong>URL：</strong><span class="source-url">https://www.caa.go.jp/notice/entry/045622/</span></div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">日本エステティック振興協議会</div>
+        <div class="source-row"><strong>内容：</strong>J-Beauty産業研究会による成長戦略提言書提出（2026年5月）</div>
+        <div class="source-row"><strong>URL：</strong><span class="source-url">https://prtimes.jp/main/html/rd/p/000000031.000161479.html</span></div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">その他Web調査ソース</div>
+        <div class="source-row">SalonX／fashionsnap／リクルート プレスリリース／各美容機器メーカー公式サイト等、計20件超のWeb記事を参照（詳細は編集部にて保管）</div>
+      </div>
+    </div>
+
+    <div class="notice-box">
+      <div class="notice-title">⚠️ データ利用上の注意事項</div>
+      <ul class="notice-list">
+        <li>LINEコミュニティの発言は個人・サロンの特定を避けるため、ニックネームを匿名記号（オーナーA・B…）に置き換えています</li>
+        <li>本レポートは社内資料・提案準備用であり、クライアント外部への引用・転載時は必ず出典を明記してください</li>
+        <li>Web調査による数値・製品情報は取得時点のものです。継続的な再取得・アップデートを推奨します</li>
+        <li>薬機法・景表法に関わる表現は、掲載前に必ず08コンプライアンスアドバイザー基準で確認してください</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="footer-logo">🌸 エス通総研</div>
+  <div class="footer-text">© 2026 エステティック通信 総合研究所 ／ 本レポートの無断転載を禁じます。引用の際は出典を明記してください。</div>
+</footer>
+
+<script>
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
